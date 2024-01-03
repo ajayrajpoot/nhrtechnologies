@@ -1,0 +1,80 @@
+<h1>{{isEditMode ? 'Update': 'Create'}} User</h1>
+
+<mat-card>
+    <mat-card-content>
+
+        <form [formGroup]="frmUser" (ngSubmit)="onSubmit()">
+
+            <div class=" row ">
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="Name" [errorStateMatcher]="matcher">
+                        <mat-error> {{formErrorsUser.Name}}</mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="Email" [errorStateMatcher]="matcher">
+                        <mat-error> {{formErrorsUser.Email}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password"
+                            [errorStateMatcher]="matcher">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+
+                        <mat-error> {{formErrorsUser.Password}}</mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+
+                    <mat-radio-group formControlName="Gender">
+                        <mat-radio-button value="Male">Male</mat-radio-button>
+                        <mat-radio-button value="Female">Female</mat-radio-button>
+                        <mat-radio-button value="Other">Other</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="Address"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+
+                    <select class="form-control" formControlName="Role">
+                        <option value=''>Select</option>
+                        <option value="RO">Read Only</option>
+                        <option value="VE">View & Edit</option>
+                    </select>
+
+                    <p style="color: var(--mdc-theme-error, #f44336);;">{{formErrorsUser.Role}}</p>
+
+                    <!-- <mat-form-field >
+                        <mat-select required>
+                            <mat-option>-- None --</mat-option>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select> 
+                        </mat-form-field> -->
+
+                </div>
+                <div class=" col-sm-12 col-md-6 col-lg-4">
+                    <button mat-raised-button color="primary">{{isEditMode ? 'Update' : 'Add New'}} User</button>
+                    <button mat-raised-button color="warn" (click)="redirect('users')">Back</button>
+
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

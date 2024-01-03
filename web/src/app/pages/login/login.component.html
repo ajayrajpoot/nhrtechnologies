@@ -1,0 +1,40 @@
+
+<div class=" row   offset-2 col-8  ">
+    <mat-card>
+        <mat-card-content>
+            <h1>Login</h1>
+
+            <form [formGroup]="frmUser" (ngSubmit)="onSubmit()">
+
+                <div class=" row ">
+                    <div class=" col-sm-12 col-md-6 col-lg-4">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput formControlName="Email" [errorStateMatcher]="matcher">
+                            <mat-error> {{formErrorsUser.Email}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-sm-12 col-md-6 col-lg-4">
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password"
+                                [errorStateMatcher]="matcher">
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+
+                            <mat-error> {{formErrorsUser.Password}}</mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class=" col-sm-12 col-md-6 col-lg-4">
+                        <button mat-raised-button color="primary">Login</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+</div>
